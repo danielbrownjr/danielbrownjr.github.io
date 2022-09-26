@@ -1,0 +1,90 @@
+html {
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.code{
+    font-family: 'JetBrains Mono', monospace;
+    background-color: antiquewhite;
+}
+
+/* Header */
+.image-container {
+    overflow: hidden;
+}
+
+.image-container img {
+    display: block;
+    max-height: 2.5rem;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 3rem;
+    background-color: rgba(220, 220, 220, 1);
+}
+
+header .logo {
+    flex-grow: 1;
+    margin-bottom: 0.25rem;
+}
+
+nav li {
+    display: inline;
+    padding-right: 2rem;
+    color: darkslategrey;
+}
+
+nav li:last-child{
+    padding-right: 0;
+}
+
+/* Banner */
+#banner {
+    position: relative;
+    height: 12rem;
+    background: url("ocean-skyline.jpg") center center no-repeat;
+    background-size: cover;
+}
+
+#banner *{
+    position: relative;
+}
+
+#banner h1 {
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 11rem;
+    font-size: 6rem;
+    color: rgba(220, 220, 220, 0.7);
+}
+
+#banner p {
+    text-align: center;
+    padding-bottom: 11rem;
+    font-size: 1.25rem;
+    color: rgba(10, 10, 10, 0.8);    
+}
+
+
+
+
+/* Basics */
+
+#basics h2 {
+    text-align: center;
+    font-size: 1.5em;
+    margin: 5px;
+}
+
+table {
+    border: 0.25em solid;
+    width:auto;
+    margin: 0 auto;
+}
+
+td {
+    border-top: 1px solid;
+    padding: 0.5em;
+}
