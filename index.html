@@ -1,84 +1,161 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>HTML/CSS Cheat Sheet</title>
-        <link rel="stylesheet" type="text/css" href="resources/css/reset.css">
-        <link rel="stylesheet" type="text/css" href="resources/css/index.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet"> 
-    </head>
-    <body>
-        <!-- Header -->
-        <header>
-            <div class="image-container logo">
-                <img src="resources/images/html.png">
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="basic">Basic</a></li>
-                    <li><a href="advanced">Advanced</a></li>
-                </ul>
-            </nav>
-        </header>
-        
-        <!-- Banner -->
-        <div id="banner">
-            <h1>HTML/CSS Cheat Sheet</h1>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#080e15">
+  <meta name="description" content="Daniel Brown Jr. Independent engineer, builder, fixer, and incurably curious human. Explore electronics, instrumentation, 3D printing, and software projects.">
+  <meta property="og:title" content="Daniel Brown // Everything Is Broken">
+  <meta property="og:description" content="Good. I like fixing things. A personal engineering laboratory and project field notebook.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://danielbrownjr.github.io/">
+  <title>Daniel Brown // Everything Is Broken</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root{color-scheme:dark;--bg:#080e15;--surface:#101a24;--surface2:#17232e;--line:#283945;--ink:#edf7f4;--muted:#9eafb8;--green:#a2f2cb;--orange:#f6ab73;--blue:#8bbcf0;--mono:"Space Mono",monospace;--sans:"DM Sans",sans-serif;--display:"Space Grotesk",sans-serif}
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:90px}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;overflow-x:hidden}
+    body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:12;background-image:linear-gradient(transparent 97%,rgba(140,210,190,.018) 100%);background-size:100% 4px;opacity:.6}
+    ::selection{background:var(--green);color:var(--bg)}
+    a{color:inherit;text-decoration:none}button{font:inherit}button,a{ -webkit-tap-highlight-color:transparent}
+    :focus-visible{outline:2px solid var(--green);outline-offset:4px}
+    .skip{position:absolute;top:-100px;left:12px;background:var(--green);color:var(--bg);padding:8px;z-index:100}.skip:focus{top:12px}
+    .shell{max-width:1200px;margin:auto;padding:0 34px}
+    .topbar{height:74px;position:sticky;top:0;z-index:20;backdrop-filter:blur(20px);background:rgba(8,14,21,.88);border-bottom:1px solid var(--line)}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:100%;gap:24px}
+    .wordmark{font-family:var(--mono);font-size:14px;font-weight:700;letter-spacing:-.6px;white-space:nowrap}.wordmark span{color:var(--green)}
+    .navlinks{display:flex;gap:28px;align-items:center}.navlinks a{font-family:var(--mono);font-size:11px;text-transform:uppercase;color:var(--muted);letter-spacing:1px}.navlinks a:hover{color:var(--green)}
+    .status{display:flex;gap:10px;align-items:center;font:10px var(--mono);color:var(--green);letter-spacing:1px;white-space:nowrap}.dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green);animation:pulse 3s infinite}
+    @keyframes pulse{50%{opacity:.45;box-shadow:0 0 3px var(--green)}}
+    .hero{min-height:min(790px,calc(100svh - 74px));display:grid;grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);align-items:center;gap:5%;padding-top:90px;padding-bottom:100px;position:relative}
+    .eyebrow,.kicker{font:11px var(--mono);letter-spacing:2px;text-transform:uppercase;color:var(--green)}
+    .eyebrow::before{content:"[ ";color:var(--muted)}.eyebrow::after{content:" ]";color:var(--muted)}
+    h1,h2,h3,p{margin-top:0}h1,h2,h3{font-family:var(--display);letter-spacing:-.045em;line-height:1.08}
+    h1{font-size:clamp(60px,7.6vw,112px);margin:30px 0 24px;font-weight:700}h1 em{font-style:normal;color:var(--green);display:block}
+    .lede{max-width:540px;color:var(--muted);font-size:17px;line-height:1.8}
+    .actions{display:flex;gap:13px;flex-wrap:wrap;margin-top:34px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:14px;padding:13px 19px;border:1px solid var(--green);font:12px var(--mono);font-weight:700;cursor:pointer;transition:transform .2s,background .2s,color .2s}
+    .btn:hover{transform:translateY(-3px)}.btn.primary{color:var(--bg);background:var(--green)}.btn.secondary{color:var(--green);background:transparent}.btn.secondary:hover{background:rgba(162,242,203,.09)}
+    .micro{font:10px var(--mono);color:var(--muted);letter-spacing:1px;margin-top:38px}
+    .instrument{border:1px solid #344650;background:radial-gradient(ellipse at 50% 20%,#1e3840 0%,#101a23 48%,#0b141b 100%);position:relative;padding:17px;box-shadow:18px 22px 0 rgba(5,11,16,.7),0 0 65px rgba(112,213,184,.07);transform:rotate(2deg);max-width:430px;width:100%;justify-self:center}
+    .instrument:before,.instrument:after{content:"+";position:absolute;color:#627780;font:19px var(--mono)}.instrument:before{top:0;left:6px}.instrument:after{bottom:-3px;right:7px}
+    .inst-head,.inst-foot{display:flex;justify-content:space-between;align-items:center;font:10px var(--mono);letter-spacing:1px;color:var(--muted)}.inst-head{padding:5px 4px 14px}.inst-head b{color:var(--green)}
+    .screen{aspect-ratio:1.15;overflow:hidden;position:relative;border:1px solid #345b56;background:radial-gradient(ellipse at center,#153731 0%,#081b1b 58%,#071313 100%);display:grid;place-items:center}
+    .screen:after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(transparent 0 3px,rgba(0,0,0,.14) 4px 5px)}
+    .scope{width:100%;height:100%;position:absolute;inset:0}.scope path{fill:none;stroke:var(--green);stroke-width:2;filter:drop-shadow(0 0 5px rgba(162,242,203,.75));stroke-dasharray:750;stroke-dashoffset:750;animation:trace 5s ease-out forwards}@keyframes trace{to{stroke-dashoffset:0}}
+    .scope .gridline{stroke:#2e6456;stroke-width:.7;stroke-dasharray:none;stroke-dashoffset:0;filter:none;opacity:.48}
+    .readout{position:absolute;left:18px;top:16px;font:10px var(--mono);color:var(--green);line-height:1.9}.readout strong{display:block;font-size:23px;font-weight:400}
+    .scope-bottom{position:absolute;bottom:14px;left:18px;color:var(--green);font:9px var(--mono);letter-spacing:2px}
+    .inst-foot{padding:15px 5px 2px}.knobs{display:flex;gap:7px}.knobs i{width:13px;height:13px;border:3px solid #344a56;border-radius:50%;background:#08131a}
+    .ticker{border-block:1px solid var(--line);overflow:hidden;background:#0e1821}.ticker-inner{max-width:1200px;margin:auto;padding:15px 34px;display:flex;align-items:center;justify-content:space-between;gap:24px;font:10px var(--mono);letter-spacing:1px;color:var(--muted);flex-wrap:wrap}.ticker strong{color:var(--green);font-weight:400}
+    section{padding-block:110px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:36px}.section-head h2{font-size:clamp(38px,5vw,64px);margin:12px 0 0}.section-note{font:11px var(--mono);color:var(--muted);max-width:230px}
+    .filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:25px}.filter{cursor:pointer;padding:9px 15px;border:1px solid var(--line);color:var(--muted);background:transparent;font:11px var(--mono);transition:.2s}.filter[aria-pressed=true],.filter:hover{border-color:var(--green);background:rgba(162,242,203,.09);color:var(--green)}
+    .projects{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.project{min-height:320px;border:1px solid var(--line);background:linear-gradient(140deg,#14212b,#101820);padding:26px;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:transform .2s,border-color .2s}.project:hover{transform:translateY(-5px);border-color:#729a8f}.project[hidden]{display:none}
+    .project .project-no{font:10px var(--mono);color:var(--green);letter-spacing:1px}.project .symbol{font:66px var(--display);font-weight:700;line-height:1;color:#29433f;margin:23px 0 12px;letter-spacing:-6px;transition:color .2s}.project:hover .symbol{color:#477569}.project h3{font-size:26px;margin:0 0 11px;letter-spacing:-1px}.project p{color:var(--muted);font-size:13px;line-height:1.75;margin:0 0 26px}.project .bottom{margin-top:auto;display:flex;justify-content:space-between;gap:10px;align-items:center;border-top:1px solid var(--line);padding-top:17px;color:var(--green);font:10px var(--mono)}.project .bottom span{color:var(--muted)}
+    .about{border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center}.about h2{font-size:clamp(40px,5vw,64px);margin:16px 0 25px}.about p{color:var(--muted);max-width:550px;font-size:15px;line-height:1.9}.about p strong{color:var(--ink);font-weight:600}
+    .manifest{border:1px solid var(--line);background:#101a24;font:12px var(--mono);box-shadow:12px 12px 0 #0b141b}.manifest-head{border-bottom:1px solid var(--line);padding:14px 20px;color:var(--green);display:flex;justify-content:space-between}.manifest-body{padding:24px}.manifest-body div{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px dashed #2b3b45}.manifest-body div:last-child{border:0}.manifest-body span{color:var(--muted)}.manifest-body b{font-weight:400;text-align:right}.manifest-body b.good{color:var(--green)}
+    .terminal-section{border-top:1px solid var(--line)}.terminal{background:#090f14;border:1px solid #334650;box-shadow:0 20px 60px #03070a;margin-top:35px;max-width:850px}.terminal-bar{padding:13px 18px;background:#16222b;border-bottom:1px solid #34434c;display:flex;gap:8px;align-items:center}.terminal-bar i{width:9px;height:9px;border-radius:50%;background:#6e8490}.terminal-bar i:first-child{background:#ef8c83}.terminal-bar i:nth-child(2){background:#eebd77}.terminal-bar i:nth-child(3){background:#9be3aa}.terminal-bar span{margin-left:16px;font:10px var(--mono);color:var(--muted)}
+    .terminal-body{padding:24px;font:12px/1.9 var(--mono);min-height:225px}.terminal-body .prompt{color:var(--green)}.terminal-output{white-space:pre-wrap;color:#b9c9cf;margin:7px 0 14px;min-height:75px}.terminal-form{display:flex;gap:10px;align-items:center}.terminal-form label{color:var(--green);white-space:nowrap}.terminal-form input{min-width:0;flex:1;background:none;border:none;outline:none;color:var(--ink);font:inherit;caret-color:var(--green);border-bottom:1px solid transparent}.terminal-form input:focus{border-bottom-color:#496c60}
+    .contact{border-top:1px solid var(--line);background:radial-gradient(ellipse at 80% 60%,#142b2a 0%,transparent 60%);text-align:center}.contact h2{font-size:clamp(46px,7vw,88px);margin:17px 0}.contact p{color:var(--muted);max-width:470px;margin:0 auto 35px}.contact .actions{justify-content:center}
+    footer{border-top:1px solid var(--line);padding:24px 0}.footer-inner{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--muted);font:10px var(--mono);letter-spacing:.6px}footer a:hover{color:var(--green)}
+    .secret{position:fixed;inset:0;z-index:40;background:rgba(3,8,11,.92);display:grid;place-items:center;padding:30px}.secret[hidden]{display:none}.secret-card{max-width:480px;text-align:center;border:1px solid var(--green);padding:45px 30px;background:#112026;box-shadow:0 0 70px rgba(162,242,203,.15)}.secret-card .cat{font-size:74px}.secret-card h2{font-size:36px;margin:15px 0}.secret-card p{color:var(--muted)}.secret-card button{margin-top:15px}
+    @media(max-width:950px){.hero{grid-template-columns:1fr;gap:50px}.instrument{max-width:390px;justify-self:start}.projects{grid-template-columns:repeat(2,minmax(0,1fr))}.about{gap:35px}.navlinks{gap:15px}}
+    @media(max-width:600px){.shell{padding-inline:20px}.topbar{height:66px}.navlinks a:not(:last-child){display:none}.status{display:none}.hero{padding-top:80px;padding-bottom:75px;min-height:0}h1{font-size:clamp(58px,13vw,80px)}.lede{font-size:15px}.instrument{max-width:340px;justify-self:center}.ticker-inner{padding-inline:20px;gap:10px}.ticker-inner span:last-child{display:none}section{padding-block:75px}.section-head{display:block}.section-note{margin-top:18px}.projects{grid-template-columns:1fr}.project{min-height:280px}.about{grid-template-columns:1fr}.terminal-body{padding:17px;font-size:10px}.footer-inner{line-height:2}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}.scope path{stroke-dashoffset:0}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="topbar"><div class="shell nav">
+    <a class="wordmark" href="#top" aria-label="Daniel Brown, back to top">DB<span>://</span>LAB</a>
+    <nav class="navlinks" aria-label="Main navigation"><a href="#work">Projects</a><a href="#about">About</a><a href="#terminal">Terminal</a><a href="#contact">Contact ↗</a></nav>
+    <div class="status"><span class="dot" aria-hidden="true"></span> CURIOSITY ONLINE</div>
+  </div></header>
+  <main id="main">
+    <div class="shell"><section class="hero" id="top" aria-labelledby="hero-title">
+      <div>
+        <div class="eyebrow">Independent engineer / perpetual tinkerer</div>
+        <h1 id="hero-title">Everything<br>is broken.<em>Good.</em></h1>
+        <p class="lede">I like fixing things. I'm Daniel: an engineer, builder, and professional question-asker who spends his days troubleshooting laboratory instruments and his nights inventing entirely new problems to solve.</p>
+        <div class="actions"><a class="btn primary" href="#work">Explore the lab <span aria-hidden="true">↗</span></a><a class="btn secondary" href="https://github.com/danielbrownjr" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
+        <div class="micro">42°N // MASSACHUSETTS · PROBABLY DISASSEMBLING SOMETHING</div>
+      </div>
+      <div class="instrument" aria-label="Decorative oscilloscope illustration with a glowing waveform">
+        <div class="inst-head"><span>DB INSTRUMENTS // MK.I</span><b>● LIVE</b></div>
+        <div class="screen">
+          <svg class="scope" viewBox="0 0 400 350" preserveAspectRatio="none" aria-hidden="true">
+            <path class="gridline" d="M0 70H400M0 140H400M0 210H400M0 280H400M80 0V350M160 0V350M240 0V350M320 0V350"/>
+            <path d="M0 184 L27 184 L40 181 L52 176 L60 195 L68 178 L77 185 L94 185 L101 165 L109 211 L116 102 L123 236 L130 177 L138 186 L173 186 Q194 186 204 177 Q217 165 229 185 Q243 207 254 183 L276 183 L290 165 L300 201 L312 84 L322 249 L332 182 L345 184 L365 184 L375 165 L385 198 L400 184"/>
+          </svg>
+          <div class="readout">SIGNAL / CURIOSITY<strong>∞.∞<small style="font-size:11px"> Hz</small></strong></div>
+          <div class="scope-bottom">NO FAULT FOUND // YET</div>
         </div>
-        
-        <!-- Basics -->
-        <div id='basics'>
-            <h2>Basic Tags</h2>
-            <table class='tag-table'>
-                <thead>
-                    <tr>
-                        <th>Tag</th>
-                        <th>Name</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><span class='code'>&lthtml&gt</span></td>
-                        <td>HTML</td>
-                        <td>Lets the browser know that the document is HTML</td>
-                    </tr>
-                    <tr>
-                        <td><span class='code'>&lttitle&gt</span></td>
-                        <td> Title</td>
-                        <td> Sets the title of the web page (Shown in the browser tab)</td>
-                    </tr>
-                    <tr>
-                        <td><span class='code'>&lthead&gt</span></td>
-                        <td>Head</td>
-                        <td>Contains important <span class='code'>links</span> to fonts or style sheets</td>
-                    </tr>
-                    <tr>
-                        <td><span class='code'>&ltbody&gt</span></td>
-                        <td>Body</td>
-                        <td>Contains the main code for your HTML document</td>
-                    </tr>
-                    <tr>
-                        <td><span class='code'>&ltdiv&gt</span></td>
-                        <td>div</td>
-                        <td>Defines a division or section of your HTML code</td>
-                    </tr>
-                    
-                    
-                </tbody>
-            </table>
-            
-        </div>
-        
-        <!-- Footer -->
-        <footer>
-            <div class='footer-content'>
-                <p>2022 Daniel Brown</p>
-            </div>
-        </footer>
-    </body>
-    
-
+        <div class="inst-foot"><span>OSCILLOSCOPE OF QUESTIONABLE NECESSITY</span><div class="knobs" aria-hidden="true"><i></i><i></i><i></i></div></div>
+      </div>
+    </section></div>
+    <div class="ticker"><div class="ticker-inner"><span>SPECIMEN <strong>01 / HUMAN</strong></span><span>OPERATING MODE <strong>BUILD · BREAK · LEARN · REPEAT</strong></span><span>ERROR CODE <strong>404: IDLE NOT FOUND</strong></span></div></div>
+    <section class="shell" id="work" aria-labelledby="work-title">
+      <div class="section-head"><div><div class="kicker">01 // Selected experiments</div><h2 id="work-title">From the workbench.</h2></div><p class="section-note">Some finished. Some evolving. All real repositories.</p></div>
+      <div class="filters" role="group" aria-label="Filter projects"><button class="filter" data-filter="all" aria-pressed="true">All projects</button><button class="filter" data-filter="hardware" aria-pressed="false">Hardware</button><button class="filter" data-filter="software" aria-pressed="false">Software</button><button class="filter" data-filter="lab" aria-pressed="false">Lab & instruments</button></div>
+      <div class="projects" id="project-grid">
+        <a class="project" data-category="hardware" href="https://github.com/danielbrownjr/DragonBreath" target="_blank" rel="noopener noreferrer"><div class="project-no">PROJECT 001 / EMBEDDED SYSTEMS</div><div class="symbol" aria-hidden="true">ϟ</div><h3>DragonBreath</h3><p>Thermal control, firmware, electronics, and the fine art of convincing hardware to behave.</p><div class="bottom"><span>HARDWARE · FIRMWARE</span>VIEW REPO ↗</div></a>
+        <a class="project" data-category="lab software" href="https://github.com/danielbrownjr/CatScan-MS" target="_blank" rel="noopener noreferrer"><div class="project-no">PROJECT 002 / ANALYTICAL TOOLS</div><div class="symbol" aria-hidden="true">∿</div><h3>CatScan-MS</h3><p>Exploring practical, offline diagnostic tooling for the wonderfully complicated world of mass spectrometry.</p><div class="bottom"><span>LAB · SOFTWARE</span>VIEW REPO ↗</div></a>
+        <a class="project" data-category="lab hardware" href="https://github.com/danielbrownjr/lc-flow-monitor" target="_blank" rel="noopener noreferrer"><div class="project-no">PROJECT 003 / MEASUREMENT</div><div class="symbol" aria-hidden="true">µ</div><h3>LC Flow Monitor</h3><p>A dedicated instrument-building project for measuring liquid chromatography flow with embedded hardware.</p><div class="bottom"><span>LAB · HARDWARE</span>VIEW REPO ↗</div></a>
+        <a class="project" data-category="software" href="https://github.com/danielbrownjr/iCue-Spotify-Integration" target="_blank" rel="noopener noreferrer"><div class="project-no">PROJECT 004 / AUTOMATION</div><div class="symbol" aria-hidden="true">♫</div><h3>iCue × Spotify</h3><p>Because a perfectly functional music setup is obviously an invitation to automate it.</p><div class="bottom"><span>SOFTWARE · INTEGRATIONS</span>VIEW REPO ↗</div></a>
+        <a class="project" data-category="hardware" href="https://github.com/danielbrownjr/voron-trident-config" target="_blank" rel="noopener noreferrer"><div class="project-no">PROJECT 005 / DIGITAL FABRICATION</div><div class="symbol" aria-hidden="true">⌘</div><h3>Voron Trident</h3><p>Printer configuration and the ongoing pursuit of mechanical precision, one slightly obsessive adjustment at a time.</p><div class="bottom"><span>HARDWARE · 3D PRINTING</span>VIEW REPO ↗</div></a>
+        <a class="project" data-category="software" href="https://github.com/danielbrownjr/HDD-Cleanup" target="_blank" rel="noopener noreferrer"><div class="project-no">PROJECT 006 / UTILITIES</div><div class="symbol" aria-hidden="true">⌁</div><h3>HDD Cleanup</h3><p>Making sense of large, messy file collections with deliberate, practical tooling instead of blind deletion.</p><div class="bottom"><span>SOFTWARE · UTILITIES</span>VIEW REPO ↗</div></a>
+      </div>
+    </section>
+    <section class="shell about" id="about" aria-labelledby="about-title">
+      <div><div class="kicker">02 // The human component</div><h2 id="about-title">I make things<br>work again.</h2><p>By day, I'm a field service engineer working with analytical instrumentation. By night, I'm probably elbow-deep in a printer, a microcontroller, or a project that began with <strong>“how hard could it be?”</strong></p><p>I studied physics, served aboard submarines, and never quite lost the urge to understand how everything works. I like clever solutions, good documentation, and the moment an impossible problem finally clicks.</p><p>This site is less a finished exhibit and more a <strong>living workbench</strong>. Expect revisions.</p></div>
+      <div class="manifest"><div class="manifest-head"><span>PERSONNEL FILE // DB-001</span><span>◈</span></div><div class="manifest-body"><div><span>PRIMARY ROLE</span><b>ENGINEER / TROUBLESHOOTER</b></div><div><span>ACADEMIC CLASS</span><b>PHYSICS</b></div><div><span>FORMER HABITAT</span><b>SUBMARINES</b></div><div><span>CURRENT HABITAT</span><b>WORKBENCH</b></div><div><span>TOOLS OF CHOICE</span><b>OSCILLOSCOPE + COFFEE</b></div><div><span>DEFAULT APPROACH</span><b>TAKE IT APART</b></div><div><span>SYSTEM STATUS</span><b class="good">VERY MUCH IN PROGRESS</b></div></div></div>
+    </section>
+    <section class="shell terminal-section" id="terminal" aria-labelledby="terminal-title"><div class="kicker">03 // Unnecessary but delightful</div><div class="section-head"><h2 id="terminal-title">Open a terminal.</h2><p class="section-note">Type <code>help</code>. Go ahead. This button absolutely did not need to exist.</p></div>
+      <div class="terminal"><div class="terminal-bar" aria-hidden="true"><i></i><i></i><i></i><span>daniel@workbench: ~</span></div><div class="terminal-body"><div class="prompt">daniel@workbench:~$ ./welcome.sh</div><div class="terminal-output" id="output" role="status" aria-live="polite">WELCOME TO THE LAB.\nAll systems nominal. Please do not touch the glowing thing.\nType 'help' for commands.</div><form class="terminal-form" id="command-form" autocomplete="off"><label for="command">guest@lab:~$</label><input id="command" name="command" type="text" aria-label="Terminal command" maxlength="80" spellcheck="false" placeholder="help"></form></div></div>
+    </section>
+    <section class="contact" id="contact" aria-labelledby="contact-title"><div class="shell"><div class="kicker">04 // Establish connection</div><h2 id="contact-title">Let's build<br>something weird.</h2><p>Interested in engineering, tinkering, or comparing notes on elaborate solutions to small problems? My GitHub is an excellent place to start.</p><div class="actions"><a href="https://github.com/danielbrownjr" class="btn primary" target="_blank" rel="noopener noreferrer">Find me on GitHub ↗</a><a href="https://github.com/danielbrownjr?tab=repositories" class="btn secondary" target="_blank" rel="noopener noreferrer">All repositories ↗</a></div></div></section>
+  </main>
+  <footer><div class="shell footer-inner"><span>© <span id="year">2026</span> DANIEL BROWN JR. // BUILT WITH CURIOSITY.</span><span>NO MACHINES WERE HARMED. THAT WE CAN PROVE.</span><a href="#top">BACK TO TOP ↑</a></div></footer>
+  <div class="secret" id="secret" role="dialog" aria-modal="true" aria-labelledby="secret-title" hidden><div class="secret-card"><div class="cat" aria-hidden="true">🐈‍⬛</div><div class="kicker">SECRET SUBSYSTEM UNLOCKED</div><h2 id="secret-title">You've found the cat.</h2><p>Congratulations. This accomplishes absolutely nothing. Exactly as intended.</p><button id="secret-close" class="btn primary">RETURN TO WORKBENCH</button></div></div>
+  <script>
+    "use strict";
+    document.getElementById("year").textContent = new Date().getFullYear();
+    const filters=[...document.querySelectorAll(".filter")],cards=[...document.querySelectorAll(".project")];
+    filters.forEach(button=>button.addEventListener("click",()=>{
+      filters.forEach(b=>b.setAttribute("aria-pressed",String(b===button)));
+      cards.forEach(card=>{card.hidden=button.dataset.filter!=="all"&&!card.dataset.category.split(" ").includes(button.dataset.filter)});
+    }));
+    const output=document.getElementById("output"),input=document.getElementById("command");
+    const responses={
+      help:"COMMANDS AVAILABLE:\n  help      show these commands\n  about     examine the operator\n  projects  jump to project index\n  coffee    check fuel reserves\n  sudo      request privileges\n  cat       summon a colleague\n  clear     clean terminal",
+      about:"Daniel Brown. Engineer. Physics graduate. Submarine veteran. Perpetual tinkerer.\nCurrent mission: make interesting things work.",
+      coffee:"FUEL STATUS: critically important.\nRECOMMENDED ACTION: refill before attempting another 'quick' project.",
+      sudo:"PERMISSION DENIED. Even you cannot fix everything with sudo.",
+      "whoami":"A curious person with excellent taste in terminal commands.",
+      ls:"projects/  ideas/  parts-bin/  definitely-not-a-new-project/",
+      pwd:"/home/daniel/workbench",
+      "rm -rf /":"Nice try. The workbench is staying.",
+      "42":"The answer is 42. The problem remains under investigation."
+    };
+    const modal=document.getElementById("secret"),close=document.getElementById("secret-close");
+    let lastFocus=null;
+    function showCat(){lastFocus=document.activeElement;modal.hidden=false;close.focus()}
+    function hideCat(){modal.hidden=true;if(lastFocus&&typeof lastFocus.focus==="function")lastFocus.focus()}
+    close.addEventListener("click",hideCat);
+    modal.addEventListener("click",e=>{if(e.target===modal)hideCat()});
+    document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!modal.hidden)hideCat();if(!modal.hidden&&e.key==="Tab"){e.preventDefault();close.focus()}});
+    document.getElementById("command-form").addEventListener("submit",e=>{
+      e.preventDefault();const cmd=input.value.trim().toLowerCase();input.value="";if(!cmd)return;
+      if(cmd==="clear"){output.textContent="";return}
+      if(cmd==="projects"){document.getElementById("work").scrollIntoView();output.textContent="Opening project index...";return}
+      if(cmd==="cat"){output.textContent="Summoning supervisor...";showCat();return}
+      output.textContent=responses[cmd]??("Command not found: "+cmd+"\nTry 'help'.");
+    });
+    const sequence=["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"];let progress=0;
+    document.addEventListener("keydown",e=>{if(e.target instanceof HTMLInputElement)return;progress=e.key===sequence[progress]?progress+1:(e.key===sequence[0]?1:0);if(progress===sequence.length){progress=0;showCat()}});
+  </script>
+</body>
 </html>

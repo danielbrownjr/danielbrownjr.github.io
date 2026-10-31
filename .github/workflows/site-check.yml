@@ -1,0 +1,48 @@
+name: Site smoke check
+on:
+  pull_request:
+    paths:
+      - 'index.html'
+      - '.github/workflows/site-check.yml'
+  workflow_dispatch:
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate HTML structure and JavaScript syntax
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+          import re, subprocess
+          content=Path("index.html").read_text()
+          class Inspector(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.ids=set()
+                  self.duplicates=[]
+                  self.links=[]
+                  self.images=[]
+              def handle_starttag(self, tag, attrs):
+                  attrs=dict(attrs)
+                  if 'id' in attrs:
+                      if attrs['id'] in self.ids:self.duplicates.append(attrs['id'])
+                      self.ids.add(attrs['id'])
+                  if tag=='a':self.links.append(attrs.get('href',''))
+                  if tag=='img':self.images.append(attrs)
+          doc=Inspector()
+          doc.feed(content)
+          assert not doc.duplicates, f"Duplicate IDs: {doc.duplicates}"
+          assert '<meta name="viewport"' in content, "Missing viewport"
+          assert '<title>' in content, "Missing title"
+          assert all(link.startswith(('#','https://','mailto:')) for link in doc.links), "Invalid link scheme"
+          assert all(not link.startswith('#') or link[1:] in doc.ids for link in doc.links), "Broken fragment links"
+          assert all('alt' in img for img in doc.images), "Image missing alt text"
+          scripts=re.findall(r'<script(?:\\s[^>]*)?>(.*?)</script>',content,re.S|re.I)
+          assert scripts, "Missing interactive script"
+          Path('/tmp/site.js').write_text('\\n'.join(scripts))
+          subprocess.run(['node','--check','/tmp/site.js'],check=True)
+          print(f"HTML smoke checks passed: {len(doc.ids)} IDs, {len(doc.links)} links")
+          PY
