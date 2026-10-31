@@ -3,6 +3,8 @@ on:
   pull_request:
     paths:
       - 'index.html'
+      - 'resources/css/workbench.css'
+      - 'resources/js/workbench.js'
       - '.github/workflows/site-check.yml'
   workflow_dispatch:
 jobs:
@@ -44,5 +46,10 @@ jobs:
           assert scripts, "Missing interactive script"
           Path('/tmp/site.js').write_text('\\n'.join(scripts))
           subprocess.run(['node','--check','/tmp/site.js'],check=True)
+          assert Path("resources/css/workbench.css").is_file(), "Missing workbench stylesheet"
+          assert Path("resources/js/workbench.js").is_file(), "Missing workbench script"
+          assert 'id="live-workbench"' in content, "Missing workbench section"
           print(f"HTML smoke checks passed: {len(doc.ids)} IDs, {len(doc.links)} links")
           PY
+      - name: Check external workbench JavaScript
+        run: node --check resources/js/workbench.js
