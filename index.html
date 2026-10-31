@@ -10,6 +10,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://danielbrownjr.github.io/">
   <title>Daniel Brown // Everything Is Broken</title>
+  <link rel="stylesheet" href="resources/css/workbench.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -71,7 +72,7 @@
   <a class="skip" href="#main">Skip to content</a>
   <header class="topbar"><div class="shell nav">
     <a class="wordmark" href="#top" aria-label="Daniel Brown, back to top">DB<span>://</span>LAB</a>
-    <nav class="navlinks" aria-label="Main navigation"><a href="#work">Projects</a><a href="#about">About</a><a href="#terminal">Terminal</a><a href="#contact">Contact ↗</a></nav>
+    <nav class="navlinks" aria-label="Main navigation"><a href="#live-workbench">Live</a><a href="#work">Projects</a><a href="#about">About</a><a href="#terminal">Terminal</a><a href="#contact">Contact ↗</a></nav>
     <div class="status"><span class="dot" aria-hidden="true"></span> CURIOSITY ONLINE</div>
   </div></header>
   <main id="main">
@@ -97,8 +98,38 @@
       </div>
     </section></div>
     <div class="ticker"><div class="ticker-inner"><span>SPECIMEN <strong>01 / HUMAN</strong></span><span>OPERATING MODE <strong>BUILD · BREAK · LEARN · REPEAT</strong></span><span>ERROR CODE <strong>404: IDLE NOT FOUND</strong></span></div></div>
+    <section class="live-workbench" id="live-workbench" aria-labelledby="workbench-title">
+      <div class="shell">
+        <div class="workbench-header">
+          <div>
+            <div class="kicker">01 // Telemetry from the real world</div>
+            <h2 id="workbench-title">The Live Workbench.</h2>
+            <p class="workbench-lead">Recent public engineering activity, straight from GitHub. No pretend telemetry, no mysterious backend, just what the instruments actually report.</p>
+          </div>
+          <div class="workbench-controls">
+            <span class="workbench-sync" id="workbench-sync" data-state="loading" role="status" aria-live="polite">CONNECTING TO GITHUB…</span>
+            <button type="button" class="workbench-refresh" id="workbench-refresh" aria-label="Refresh public GitHub activity">↻ REFRESH</button>
+          </div>
+        </div>
+        <div class="workbench-layout">
+          <div class="workbench-panel">
+            <div class="workbench-panel-head"><h3>Public activity feed</h3><span>RECENT EVENTS</span></div>
+            <ol class="workbench-events" id="workbench-events"><li class="workbench-event-empty">Connecting to public GitHub events…</li></ol>
+          </div>
+          <div class="workbench-panel">
+            <div class="workbench-panel-head"><h3>On the bench</h3><span>REPO TELEMETRY</span></div>
+            <div class="workbench-repos" id="workbench-repos">
+              <a class="workbench-repo" href="https://github.com/danielbrownjr/DragonBreath"><strong>DragonBreath ↗</strong></a>
+              <a class="workbench-repo" href="https://github.com/danielbrownjr/BandiC5"><strong>C5 Bandit ↗</strong></a>
+              <a class="workbench-repo" href="https://github.com/thetechbenders/badger-i-hardly-knew-her"><strong>BadgHer ↗</strong></a>
+            </div>
+          </div>
+        </div>
+        <p class="workbench-note">Public GitHub data only. Updated when this page loads or you refresh, not a continuous stream. <a href="https://www.githubstatus.com/" target="_blank" rel="noopener noreferrer">GitHub service status ↗</a></p>
+      </div>
+    </section>
     <section class="shell" id="work" aria-labelledby="work-title">
-      <div class="section-head"><div><div class="kicker">01 // Selected experiments</div><h2 id="work-title">From the workbench.</h2></div><p class="section-note">Some finished. Some evolving. All real repositories.</p></div>
+      <div class="section-head"><div><div class="kicker">02 // Selected experiments</div><h2 id="work-title">From the workbench.</h2></div><p class="section-note">Some finished. Some evolving. All real repositories.</p></div>
       <div class="filters" role="group" aria-label="Filter projects"><button class="filter" data-filter="all" aria-pressed="true">All projects</button><button class="filter" data-filter="hardware" aria-pressed="false">Hardware</button><button class="filter" data-filter="software" aria-pressed="false">Software</button><button class="filter" data-filter="lab" aria-pressed="false">Lab & instruments</button></div>
       <div class="projects" id="project-grid">
         <a class="project" data-category="hardware" href="https://github.com/danielbrownjr/DragonBreath" target="_blank" rel="noopener noreferrer"><div class="project-no">PROJECT 001 / EMBEDDED SYSTEMS</div><div class="symbol" aria-hidden="true">ϟ</div><h3>DragonBreath</h3><p>Thermal control, firmware, electronics, and the fine art of convincing hardware to behave.</p><div class="bottom"><span>HARDWARE · FIRMWARE</span>VIEW REPO ↗</div></a>
@@ -111,13 +142,13 @@
       </div>
     </section>
     <section class="shell about" id="about" aria-labelledby="about-title">
-      <div><div class="kicker">02 // The human component</div><h2 id="about-title">I make things<br>work again.</h2><p>By day, I'm a field service engineer working with analytical instrumentation. By night, I'm probably elbow-deep in a printer, a microcontroller, or a project that began with <strong>“how hard could it be?”</strong></p><p>I studied physics, served aboard submarines, and never quite lost the urge to understand how everything works. I like clever solutions, good documentation, and the moment an impossible problem finally clicks.</p><p>This site is less a finished exhibit and more a <strong>living workbench</strong>. Expect revisions.</p></div>
+      <div><div class="kicker">03 // The human component</div><h2 id="about-title">I make things<br>work again.</h2><p>By day, I'm a field service engineer working with analytical instrumentation. By night, I'm probably elbow-deep in a printer, a microcontroller, or a project that began with <strong>“how hard could it be?”</strong></p><p>I studied physics, served aboard submarines, and never quite lost the urge to understand how everything works. I like clever solutions, good documentation, and the moment an impossible problem finally clicks.</p><p>This site is less a finished exhibit and more a <strong>living workbench</strong>. Expect revisions.</p></div>
       <div class="manifest"><div class="manifest-head"><span>PERSONNEL FILE // DB-001</span><span>◈</span></div><div class="manifest-body"><div><span>PRIMARY ROLE</span><b>ENGINEER / TROUBLESHOOTER</b></div><div><span>ACADEMIC CLASS</span><b>PHYSICS</b></div><div><span>FORMER HABITAT</span><b>SUBMARINES</b></div><div><span>CURRENT HABITAT</span><b>WORKBENCH</b></div><div><span>TOOLS OF CHOICE</span><b>OSCILLOSCOPE + COFFEE</b></div><div><span>DEFAULT APPROACH</span><b>TAKE IT APART</b></div><div><span>SYSTEM STATUS</span><b class="good">VERY MUCH IN PROGRESS</b></div></div></div>
     </section>
-    <section class="shell terminal-section" id="terminal" aria-labelledby="terminal-title"><div class="kicker">03 // Unnecessary but delightful</div><div class="section-head"><h2 id="terminal-title">Open a terminal.</h2><p class="section-note">Type <code>help</code>. Go ahead. This button absolutely did not need to exist.</p></div>
+    <section class="shell terminal-section" id="terminal" aria-labelledby="terminal-title"><div class="kicker">04 // Unnecessary but delightful</div><div class="section-head"><h2 id="terminal-title">Open a terminal.</h2><p class="section-note">Type <code>help</code>. Go ahead. This button absolutely did not need to exist.</p></div>
       <div class="terminal"><div class="terminal-bar" aria-hidden="true"><i></i><i></i><i></i><span>daniel@workbench: ~</span></div><div class="terminal-body"><div class="prompt">daniel@workbench:~$ ./welcome.sh</div><div class="terminal-output" id="output" role="status" aria-live="polite">WELCOME TO THE LAB.\nAll systems nominal. Please do not touch the glowing thing.\nType 'help' for commands.</div><form class="terminal-form" id="command-form" autocomplete="off"><label for="command">guest@lab:~$</label><input id="command" name="command" type="text" aria-label="Terminal command" maxlength="80" spellcheck="false" placeholder="help"></form></div></div>
     </section>
-    <section class="contact" id="contact" aria-labelledby="contact-title"><div class="shell"><div class="kicker">04 // Establish connection</div><h2 id="contact-title">Let's build<br>something weird.</h2><p>Interested in engineering, tinkering, or comparing notes on elaborate solutions to small problems? My GitHub is an excellent place to start.</p><div class="actions"><a href="https://github.com/danielbrownjr" class="btn primary" target="_blank" rel="noopener noreferrer">Find me on GitHub ↗</a><a href="https://github.com/danielbrownjr?tab=repositories" class="btn secondary" target="_blank" rel="noopener noreferrer">All repositories ↗</a></div></div></section>
+    <section class="contact" id="contact" aria-labelledby="contact-title"><div class="shell"><div class="kicker">05 // Establish connection</div><h2 id="contact-title">Let's build<br>something weird.</h2><p>Interested in engineering, tinkering, or comparing notes on elaborate solutions to small problems? My GitHub is an excellent place to start.</p><div class="actions"><a href="https://github.com/danielbrownjr" class="btn primary" target="_blank" rel="noopener noreferrer">Find me on GitHub ↗</a><a href="https://github.com/danielbrownjr?tab=repositories" class="btn secondary" target="_blank" rel="noopener noreferrer">All repositories ↗</a></div></div></section>
   </main>
   <footer><div class="shell footer-inner"><span>© <span id="year">2026</span> DANIEL BROWN JR. // BUILT WITH CURIOSITY.</span><span>NO MACHINES WERE HARMED. THAT WE CAN PROVE.</span><a href="#top">BACK TO TOP ↑</a></div></footer>
   <div class="secret" id="secret" role="dialog" aria-modal="true" aria-labelledby="secret-title" hidden><div class="secret-card"><div class="cat" aria-hidden="true">🐈‍⬛</div><div class="kicker">SECRET SUBSYSTEM UNLOCKED</div><h2 id="secret-title">You've found the cat.</h2><p>Congratulations. This accomplishes absolutely nothing. Exactly as intended.</p><button id="secret-close" class="btn primary">RETURN TO WORKBENCH</button></div></div>
@@ -158,5 +189,6 @@
     const sequence=["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"];let progress=0;
     document.addEventListener("keydown",e=>{if(e.target instanceof HTMLInputElement)return;progress=e.key===sequence[progress]?progress+1:(e.key===sequence[0]?1:0);if(progress===sequence.length){progress=0;showCat()}});
   </script>
+  <script src="resources/js/workbench.js" defer></script>
 </body>
 </html>
