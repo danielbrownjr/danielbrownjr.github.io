@@ -36,10 +36,21 @@ jobs:
         run: python scripts/update_spotify.py
       - name: Set up GitHub Pages
         uses: actions/configure-pages@v5
+      - name: Assemble clean public site
+        shell: bash
+        run: |
+          mkdir -p public
+          cp index.html public/index.html
+          cp -R resources public/resources
+          if [ -f data/spotify.json ]; then
+            mkdir -p public/data
+            cp data/spotify.json public/data/spotify.json
+          fi
+          touch public/.nojekyll
       - name: Upload site without git metadata or secrets
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: 'public'
       - name: Deploy Pages artifact
         id: deployment
         uses: actions/deploy-pages@v4
