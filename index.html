@@ -11,6 +11,7 @@
   <meta property="og:url" content="https://danielbrownjr.github.io/">
   <title>Daniel Brown // Everything Is Broken</title>
   <link rel="stylesheet" href="resources/css/workbench.css">
+  <link rel="stylesheet" href="resources/css/spotify.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -125,6 +126,22 @@
             </div>
           </div>
         </div>
+        <div class="spotify-instrument" id="spotify-now-playing" data-state="idle" aria-label="Spotify listening status">
+          <div class="spotify-topline">
+            <span>DB://LAB // AUDIO TELEMETRY</span>
+            <span class="spotify-state"><i class="spotify-led" aria-hidden="true"></i><span id="spotify-state">STANDBY</span></span>
+          </div>
+          <div class="spotify-body">
+            <div class="spotify-cover" id="spotify-cover" aria-hidden="true">♫<img id="spotify-art" alt="" hidden></div>
+            <div class="spotify-details">
+              <h3 id="spotify-title">Checking the signal…</h3>
+              <p id="spotify-artist">Reading the latest Spotify snapshot.</p>
+              <div class="spotify-album" id="spotify-album"></div>
+              <a class="spotify-link" id="spotify-track-link" href="https://open.spotify.com/" rel="noopener noreferrer" target="_blank" hidden>OPEN ON SPOTIFY ↗</a>
+            </div>
+          </div>
+          <div class="spotify-caption" id="spotify-caption">STATUS: AWAITING TELEMETRY</div>
+        </div>
         <p class="workbench-note">Public GitHub data only. Updated when this page loads or you refresh, not a continuous stream. <a href="https://www.githubstatus.com/" target="_blank" rel="noopener noreferrer">GitHub service status ↗</a></p>
       </div>
     </section>
@@ -190,5 +207,6 @@
     document.addEventListener("keydown",e=>{if(e.target instanceof HTMLInputElement)return;progress=e.key===sequence[progress]?progress+1:(e.key===sequence[0]?1:0);if(progress===sequence.length){progress=0;showCat()}});
   </script>
   <script src="resources/js/workbench.js" defer></script>
+  <script src="resources/js/spotify.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,56 @@
+name: Publish DB Lab (Spotify)
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'index.html'
+      - 'resources/**'
+      - 'scripts/update_spotify.py'
+      - '.github/workflows/spotify-snapshot.yml'
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Refresh optional Spotify snapshot
+        env:
+          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
+          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+        run: python scripts/update_spotify.py
+      - name: Set up GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Assemble clean public site
+        shell: bash
+        run: |
+          mkdir -p public
+          cp index.html public/index.html
+          cp -R resources public/resources
+          if [ -f data/spotify.json ]; then
+            mkdir -p public/data
+            cp data/spotify.json public/data/spotify.json
+          fi
+          touch public/.nojekyll
+      - name: Upload site without git metadata or secrets
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'public'
+      - name: Deploy Pages artifact
+        id: deployment
+        uses: actions/deploy-pages@v4

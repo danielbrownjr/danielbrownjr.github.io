@@ -5,6 +5,12 @@ on:
       - 'index.html'
       - 'resources/css/workbench.css'
       - 'resources/js/workbench.js'
+      - 'resources/css/spotify.css'
+      - 'resources/js/spotify.js'
+      - 'scripts/update_spotify.py'
+      - 'scripts/authorize_spotify.py'
+      - 'tests/test_spotify.py'
+      - '.github/workflows/spotify-snapshot.yml'
       - '.github/workflows/site-check.yml'
   workflow_dispatch:
 jobs:
@@ -49,7 +55,16 @@ jobs:
           assert Path("resources/css/workbench.css").is_file(), "Missing workbench stylesheet"
           assert Path("resources/js/workbench.js").is_file(), "Missing workbench script"
           assert 'id="live-workbench"' in content, "Missing workbench section"
+          assert Path("resources/css/spotify.css").is_file(), "Missing Spotify stylesheet"
+          assert Path("resources/js/spotify.js").is_file(), "Missing Spotify script"
+          assert 'id="spotify-now-playing"' in content, "Missing Spotify panel"
           print(f"HTML smoke checks passed: {len(doc.ids)} IDs, {len(doc.links)} links")
           PY
       - name: Check external workbench JavaScript
         run: node --check resources/js/workbench.js
+      - name: Check Spotify JavaScript syntax
+        run: node --check resources/js/spotify.js
+      - name: Check Spotify Python and sanitization tests
+        run: |
+          python -m py_compile scripts/update_spotify.py scripts/authorize_spotify.py
+          python -m unittest discover -s tests -p 'test_spotify.py' -v
