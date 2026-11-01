@@ -1,38 +1,45 @@
-name: Spotify now playing snapshot
+name: Publish DB Lab (Spotify)
 on:
+  push:
+    branches: [master]
+    paths:
+      - 'index.html'
+      - 'resources/**'
+      - 'scripts/update_spotify.py'
+      - '.github/workflows/spotify-snapshot.yml'
   schedule:
     - cron: '*/5 * * * *'
   workflow_dispatch:
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 concurrency:
-  group: spotify-snapshot
+  group: pages-deploy
   cancel-in-progress: false
 jobs:
-  snapshot:
+  publish:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: master
-          persist-credentials: true
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Refresh public status from Spotify
+      - name: Refresh optional Spotify snapshot
         env:
           SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
           SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
           SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
         run: python scripts/update_spotify.py
-      - name: Commit new snapshot if changed
-        run: |
-          if git diff --quiet -- data/spotify.json; then
-            echo "No snapshot change"
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/spotify.json
-          git commit -m "Update public Spotify playback snapshot"
-          git push origin HEAD:master
+      - name: Set up GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Upload site without git metadata or secrets
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+      - name: Deploy Pages artifact
+        id: deployment
+        uses: actions/deploy-pages@v4
