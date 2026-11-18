@@ -42,6 +42,8 @@ jobs:
           mkdir -p public
           cp index.html public/index.html
           cp -R resources public/resources
+          cp favicon.ico favicon.svg public/
+          test -s public/favicon.ico && test -s public/favicon.svg
           if [ -f data/spotify.json ]; then
             mkdir -p public/data
             cp data/spotify.json public/data/spotify.json
