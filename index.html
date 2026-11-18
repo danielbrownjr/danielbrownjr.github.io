@@ -10,6 +10,8 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://danielbrownjr.github.io/">
   <title>Daniel Brown // Everything Is Broken</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" href="resources/css/workbench.css">
   <link rel="stylesheet" href="resources/css/spotify.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,6 +32,7 @@
     .nav{display:flex;align-items:center;justify-content:space-between;height:100%;gap:24px}
     .wordmark{font-family:var(--mono);font-size:14px;font-weight:700;letter-spacing:-.6px;white-space:nowrap}.wordmark span{color:var(--green)}
     .navlinks{display:flex;gap:28px;align-items:center}.navlinks a{font-family:var(--mono);font-size:11px;text-transform:uppercase;color:var(--muted);letter-spacing:1px}.navlinks a:hover{color:var(--green)}
+    .mobile-menu{display:none}.mobile-menu summary{list-style:none;cursor:pointer;color:var(--green);font:11px var(--mono);letter-spacing:1px;border:1px solid var(--line);padding:9px 13px}.mobile-menu summary::-webkit-details-marker{display:none}.mobile-menu nav{position:absolute;right:0;top:calc(100% + 8px);min-width:185px;display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);box-shadow:0 18px 30px #03070a}.mobile-menu nav a{display:block;padding:12px 16px;color:var(--ink);font:12px var(--mono)}.mobile-menu nav a:hover,.mobile-menu nav a:focus-visible{background:var(--surface2);color:var(--green)}
     .status{display:flex;gap:10px;align-items:center;font:10px var(--mono);color:var(--green);letter-spacing:1px;white-space:nowrap}.dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green);animation:pulse 3s infinite}
     @keyframes pulse{50%{opacity:.45;box-shadow:0 0 3px var(--green)}}
     .hero{min-height:min(790px,calc(100svh - 74px));display:grid;grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);align-items:center;gap:5%;padding-top:90px;padding-bottom:100px;position:relative}
@@ -65,7 +68,7 @@
     footer{border-top:1px solid var(--line);padding:24px 0}.footer-inner{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--muted);font:10px var(--mono);letter-spacing:.6px}footer a:hover{color:var(--green)}
     .secret{position:fixed;inset:0;z-index:40;background:rgba(3,8,11,.92);display:grid;place-items:center;padding:30px}.secret[hidden]{display:none}.secret-card{max-width:480px;text-align:center;border:1px solid var(--green);padding:45px 30px;background:#112026;box-shadow:0 0 70px rgba(162,242,203,.15)}.secret-card .cat{font-size:74px}.secret-card h2{font-size:36px;margin:15px 0}.secret-card p{color:var(--muted)}.secret-card button{margin-top:15px}
     @media(max-width:950px){.hero{grid-template-columns:1fr;gap:50px}.instrument{max-width:390px;justify-self:start}.projects{grid-template-columns:repeat(2,minmax(0,1fr))}.about{gap:35px}.navlinks{gap:15px}}
-    @media(max-width:600px){.shell{padding-inline:20px}.topbar{height:66px}.navlinks a:not(:last-child){display:none}.status{display:none}.hero{padding-top:80px;padding-bottom:75px;min-height:0}h1{font-size:clamp(58px,13vw,80px)}.lede{font-size:15px}.instrument{max-width:340px;justify-self:center}.ticker-inner{padding-inline:20px;gap:10px}.ticker-inner span:last-child{display:none}section{padding-block:75px}.section-head{display:block}.section-note{margin-top:18px}.projects{grid-template-columns:1fr}.project{min-height:280px}.about{grid-template-columns:1fr}.terminal-body{padding:17px;font-size:10px}.footer-inner{line-height:2}}
+    @media(max-width:600px){.shell{padding-inline:20px}.topbar{height:66px}.navlinks{display:none}.mobile-menu{display:block}.status{display:none}.hero{padding-top:80px;padding-bottom:75px;min-height:0}h1{font-size:clamp(58px,13vw,80px)}.lede{font-size:15px}.instrument{max-width:340px;justify-self:center}.ticker-inner{padding-inline:20px;gap:10px}.ticker-inner span:last-child{display:none}section{padding-block:75px}.section-head{display:block}.section-note{margin-top:18px}.projects{grid-template-columns:1fr}.project{min-height:280px}.about{grid-template-columns:1fr}.terminal-body{padding:17px;font-size:10px}.footer-inner{line-height:2}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}.scope path{stroke-dashoffset:0}}
   </style>
 </head>
@@ -74,6 +77,7 @@
   <header class="topbar"><div class="shell nav">
     <a class="wordmark" href="#top" aria-label="Daniel Brown, back to top">DB<span>://</span>LAB</a>
     <nav class="navlinks" aria-label="Main navigation"><a href="#live-workbench">Live</a><a href="#work">Projects</a><a href="#about">About</a><a href="#terminal">Terminal</a><a href="#contact">Contact ↗</a></nav>
+    <details class="mobile-menu"><summary aria-label="Open site navigation">MENU ☰</summary><nav aria-label="Mobile navigation"><a href="#live-workbench">Live</a><a href="#work">Projects</a><a href="#about">About</a><a href="#terminal">Terminal</a><a href="#contact">Contact ↗</a></nav></details>
     <div class="status"><span class="dot" aria-hidden="true"></span> CURIOSITY ONLINE</div>
   </div></header>
   <main id="main">
@@ -165,7 +169,9 @@
       <div class="manifest"><div class="manifest-head"><span>PERSONNEL FILE // DB-001</span><span>◈</span></div><div class="manifest-body"><div><span>PRIMARY ROLE</span><b>ENGINEER / TROUBLESHOOTER</b></div><div><span>ACADEMIC CLASS</span><b>PHYSICS</b></div><div><span>FORMER HABITAT</span><b>SUBMARINES</b></div><div><span>CURRENT HABITAT</span><b>WORKBENCH</b></div><div><span>TOOLS OF CHOICE</span><b>OSCILLOSCOPE + COFFEE</b></div><div><span>DEFAULT APPROACH</span><b>TAKE IT APART</b></div><div><span>SYSTEM STATUS</span><b class="good">VERY MUCH IN PROGRESS</b></div></div></div>
     </section>
     <section class="shell terminal-section" id="terminal" aria-labelledby="terminal-title"><div class="kicker">04 // Unnecessary but delightful</div><div class="section-head"><h2 id="terminal-title">Open a terminal.</h2><p class="section-note">Type <code>help</code>. Go ahead. This button absolutely did not need to exist.</p></div>
-      <div class="terminal"><div class="terminal-bar" aria-hidden="true"><i></i><i></i><i></i><span>daniel@workbench: ~</span></div><div class="terminal-body"><div class="prompt">daniel@workbench:~$ ./welcome.sh</div><div class="terminal-output" id="output" role="status" aria-live="polite">WELCOME TO THE LAB.\nAll systems nominal. Please do not touch the glowing thing.\nType 'help' for commands.</div><form class="terminal-form" id="command-form" autocomplete="off"><label for="command">guest@lab:~$</label><input id="command" name="command" type="text" aria-label="Terminal command" maxlength="80" spellcheck="false" placeholder="help"></form></div></div>
+      <div class="terminal"><div class="terminal-bar" aria-hidden="true"><i></i><i></i><i></i><span>daniel@workbench: ~</span></div><div class="terminal-body"><div class="prompt">daniel@workbench:~$ ./welcome.sh</div><div class="terminal-output" id="output" role="status" aria-live="polite">WELCOME TO THE LAB.
+All systems nominal. Please do not touch the glowing thing.
+Type 'help' for commands.</div><form class="terminal-form" id="command-form" autocomplete="off"><label for="command">guest@lab:~$</label><input id="command" name="command" type="text" aria-label="Terminal command" maxlength="80" spellcheck="false" placeholder="help"></form></div></div>
     </section>
     <section class="contact" id="contact" aria-labelledby="contact-title"><div class="shell"><div class="kicker">05 // Establish connection</div><h2 id="contact-title">Let's build<br>something weird.</h2><p>Working on embedded systems, scientific instrumentation, or an oddball hardware problem? Explore the public repositories and get in touch through GitHub.</p><div class="actions"><a href="https://github.com/danielbrownjr" class="btn primary" target="_blank" rel="noopener noreferrer">Find me on GitHub ↗</a><a href="https://github.com/danielbrownjr?tab=repositories" class="btn secondary" target="_blank" rel="noopener noreferrer">All repositories ↗</a></div></div></section>
   </main>
@@ -173,6 +179,7 @@
   <div class="secret" id="secret" role="dialog" aria-modal="true" aria-labelledby="secret-title" hidden><div class="secret-card"><div class="cat" aria-hidden="true">🐈‍⬛</div><div class="kicker">SECRET SUBSYSTEM UNLOCKED</div><h2 id="secret-title">You've found the cat.</h2><p>Congratulations. This accomplishes absolutely nothing. Exactly as intended.</p><button id="secret-close" class="btn primary">RETURN TO WORKBENCH</button></div></div>
   <script>
     "use strict";
+    document.querySelectorAll(".mobile-menu nav a").forEach(link=>link.addEventListener("click",()=>link.closest("details").open=false));
     document.getElementById("year").textContent = new Date().getFullYear();
     const filters=[...document.querySelectorAll(".filter")],cards=[...document.querySelectorAll(".project")];
     filters.forEach(button=>button.addEventListener("click",()=>{
